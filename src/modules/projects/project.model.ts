@@ -1,9 +1,4 @@
-import { Schema, model } from "mongoose";
-
-interface ITechnology {
-  name: string;
-  icon: string;
-}
+import { Schema, Types, model } from "mongoose";
 
 export interface IProject {
   title: string;
@@ -12,7 +7,7 @@ export interface IProject {
   githubLink?: string;
   liveLink?: string;
   videoLink?: string;
-  technologies?: ITechnology[];
+  technologies?: [];
 }
 
 const ProjectSchema = new Schema<IProject>({
@@ -22,12 +17,7 @@ const ProjectSchema = new Schema<IProject>({
   githubLink: { type: String },
   liveLink: { type: String },
   videoLink: { type: String },
-  technologies: [
-    {
-      name: { type: String, required: true },
-      icon: { type: String, required: true },
-    },
-  ],
+  technologies: [{ type: Types.ObjectId, ref: "Technology" }],
 });
 
 export const Project = model<IProject>("Project", ProjectSchema);
