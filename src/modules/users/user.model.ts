@@ -12,6 +12,7 @@ export interface ISkill {
 
 export interface IUser {
   name: string;
+  designation: string;
   location: string;
   experience: string;
   education: string;
@@ -21,6 +22,7 @@ export interface IUser {
 
 const UserSchema = new Schema<IUser>({
   name: { type: String, required: true },
+  designation: { type: String, required: true },
   location: { type: String, required: true },
   experience: { type: String, required: true },
   education: { type: String, required: true },
